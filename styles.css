@@ -18,6 +18,7 @@ header {
   padding: 20px 0;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 nav ul {
@@ -38,6 +39,42 @@ nav ul li a {
 
 nav ul li a:hover {
   color: var(--accent-color);
+}
+
+nav ul li::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  height: 2px;
+  width: 0;
+  background: var(--accent-color);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav ul li:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.scrolled {
+  background-color: rgba(51, 51, 51, 1);
+  padding: 10px 0;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.header-content h1, nav ul li a {
+  animation: fadeIn 0.5s forwards;
 }
 
 section {
@@ -102,4 +139,29 @@ button {
 
 button:hover {
   background-color: #555;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#scrollToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: none;
+  transition: background-color 0.7s;
+}
+
+#scrollToTop:hover {
+  background-color: #0056b3;
 }
